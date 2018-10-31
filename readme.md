@@ -7,5 +7,5 @@
 <img src = "./assets/SLR/slr.gif" align = "center"></img>
 <img src = "./assets/SLR/loss.png" align = "center"></img>
 
-<p>On the left there is a plot representing how the model changes in time(when the epochs are growing). The final epoch is equal to 100k.</p>
-<p>On the right we can see a graph displaying the dependency of loss on the epoch(in range 0-1000). After 1000 epoch the change is really very small.</p>
+<p>On the first picture/gif there is a plot representing how the model changes in time(when the epochs are growing). The final epoch is equal to 100k.</p>
+<p>On the second one we can see a graph displaying the dependency of loss on the epoch(in range 0-1000). After 1000 epoch the change is really very small.</p>
