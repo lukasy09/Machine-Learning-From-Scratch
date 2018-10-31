@@ -4,10 +4,10 @@
  (that is 1-Dimensional vector/tensor) to a continous set of labels.</p>
 <p>In this particular example each point represents a single human - worker, X-axis his position at work, Y- axis his salary. The model tries to predict how much people should earn.</p>
 <p>The data comes from UDEMY ML Course [A-Z]</p>
-<p align = "left">
+<p align = "center">
 <img src = "./assets/SLR/slr.gif" ></img>
 </p>
-<p align = "right">
+<p align = "center">
 <img src = "./assets/SLR/loss.png" ></img>
 </p>
 
