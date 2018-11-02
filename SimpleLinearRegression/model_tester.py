@@ -11,7 +11,7 @@ Y = dataframe['Salary'].values
 model = SimpleLinearRegression()
 
 """Uncomment if you want to see the effect after 100000 epochs/iterations"""
-model.fit(X, Y, epochs = 100000)
+model.fit(X, Y, epochs = 1000)
 #plt.figure(1, figsize = (8,5))
 #plt.scatter(X, Y)
 #plt.plot(X, model.predict(X))

@@ -5,7 +5,7 @@ import pandas as pd
 class LinearRegression:
     
     def __init__(self):
-        self.learning_rate = 0.0001
+        self.learning_rate = 0.001
         self.is_fitted = False
         self.epochs = 0
         self.X = None
@@ -32,7 +32,6 @@ class LinearRegression:
         for i in range(0, n):
             x = X[i]
             y = Y[i]
-            print(n)
             for param_index in range(0, len(params)):
                 main_x = x[param_index]
                 sum = 0
@@ -43,12 +42,12 @@ class LinearRegression:
             b_sum = 0
             for param_it in range(0, len(params)):
                 b_sum +=  x[param_it] * params[param_it]
+            b_sum += bias
             bias_gradient += (-2/n) * (y - b_sum)
         for it in range(0, len(params)):
             new_params[it] = params[it] - self.learning_rate * param_gradient[it]
         
         new_bias = bias - self.learning_rate * bias_gradient
-        #print([new_params, new_bias])
         return [new_params, new_bias]
         
         
@@ -57,6 +56,7 @@ class LinearRegression:
         bias = 0
         for epoch in range(0, n_epochs):
             params, bias = self.step_gradient(X, Y, params, bias)
+        print([params, bias])
         return [params, bias]
             
                                 
@@ -69,7 +69,7 @@ class LinearRegression:
                 
         
     
-    def fit(self, X, Y, epochs = 100):
+    def fit(self, X, Y, epochs = 1000):
         if len(X) != len(Y):
             print("Dimension error!")
             return None
@@ -85,13 +85,18 @@ class LinearRegression:
         params, bias = self.run_gradient_descent(self.X, self.Y, epochs)
         
 encoder = LabelEncoder()
-
-    
+one_hot_encoder = OneHotEncoder()    
+scaler = StandardScaler()
 df = pd.read_csv("./data/50_Startups.csv")   
-X = df.iloc[:, :-1].values
+df = df.fillna(10)
+
+X = df.iloc[:, [0, 1]].values
 Y = df['Profit'].values
+
+X = scaler.fit_transform(X)
     
-X[:, 3] = encoder.fit_transform(X[:, 3])
+#X[:, 3] = encoder.fit_transform(X[:, 3])
+#X = one_hot_encoder(X[:, 3]).toarray()
 
 
 regressor = LinearRegression()
