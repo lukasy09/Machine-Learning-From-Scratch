@@ -1,7 +1,7 @@
 import numpy as np
 from sklearn.preprocessing import StandardScaler, LabelEncoder, OneHotEncoder
 import pandas as pd
-
+"""General version of Regressor Class. Can handle more than 1 kind of arguments as input"""
 class LinearRegression:
     
     def __init__(self):
@@ -15,14 +15,27 @@ class LinearRegression:
         self.n_features = 0
         self.params = []
         self.bias = 0
-      
+        self.loss_values = []
+    """Scaling input data"""    
     @staticmethod
-    def scale_input_data( X):
+    def scale_input_data(X):
         scaler = StandardScaler()
         return scaler.fit_transform(X)
-    def loss():
-        pass
     
+    def loss(self, X, Y, params, bias):
+        error = 0
+        n = self.n_points
+        for i in range(0, n):
+            x = X[i]
+            y = Y[i]
+            product_sum = 0
+            for param_it in range(0, len(params)):
+                product_sum += params[param_it] * x[param_it]
+            product_sum += bias
+            error += (y - product_sum) ** 2
+            print(error / n)
+        return error / n
+            
     def step_gradient(self, X, Y, params, bias):
         n = self.n_points
         param_gradient = [0] * len(params)
@@ -48,6 +61,8 @@ class LinearRegression:
             new_params[it] = params[it] - self.learning_rate * param_gradient[it]
         
         new_bias = bias - self.learning_rate * bias_gradient
+        self.params = new_params
+        self.bias = new_bias
         return [new_params, new_bias]
         
         
@@ -56,19 +71,11 @@ class LinearRegression:
         bias = 0
         for epoch in range(0, n_epochs):
             params, bias = self.step_gradient(X, Y, params, bias)
-        print([params, bias])
+            loss = self.loss(X, Y, params, bias)
+            self.loss_values.append(loss)
         return [params, bias]
             
                                 
-### to do..
-                    
-                
-                    
-                
-                
-                
-        
-    
     def fit(self, X, Y, epochs = 1000):
         if len(X) != len(Y):
             print("Dimension error!")
@@ -81,23 +88,4 @@ class LinearRegression:
         self.n_features = self.size[1]
         self.params = [0] * self.n_features
         X = LinearRegression.scale_input_data(X)
-        
         params, bias = self.run_gradient_descent(self.X, self.Y, epochs)
-        
-encoder = LabelEncoder()
-one_hot_encoder = OneHotEncoder()    
-scaler = StandardScaler()
-df = pd.read_csv("./data/50_Startups.csv")   
-df = df.fillna(10)
-
-X = df.iloc[:, [0, 1]].values
-Y = df['Profit'].values
-
-X = scaler.fit_transform(X)
-    
-#X[:, 3] = encoder.fit_transform(X[:, 3])
-#X = one_hot_encoder(X[:, 3]).toarray()
-
-
-regressor = LinearRegression()
-regressor.fit(X, Y)
