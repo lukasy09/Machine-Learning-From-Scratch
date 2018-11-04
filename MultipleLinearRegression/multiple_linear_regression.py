@@ -33,7 +33,6 @@ class LinearRegression:
                 product_sum += params[param_it] * x[param_it]
             product_sum += bias
             error += (y - product_sum) ** 2
-            print(error / n)
         return error / n
             
     def step_gradient(self, X, Y, params, bias):
@@ -61,8 +60,6 @@ class LinearRegression:
             new_params[it] = params[it] - self.learning_rate * param_gradient[it]
         
         new_bias = bias - self.learning_rate * bias_gradient
-        self.params = new_params
-        self.bias = new_bias
         return [new_params, new_bias]
         
         
@@ -73,6 +70,8 @@ class LinearRegression:
             params, bias = self.step_gradient(X, Y, params, bias)
             loss = self.loss(X, Y, params, bias)
             self.loss_values.append(loss)
+        self.params = params
+        self.bias = bias
         return [params, bias]
             
                                 
@@ -89,3 +88,27 @@ class LinearRegression:
         self.params = [0] * self.n_features
         X = LinearRegression.scale_input_data(X)
         params, bias = self.run_gradient_descent(self.X, self.Y, epochs)
+        
+    def predict(self, X):
+        output = []
+        for i in range(0, len(X)):
+            sum = 0
+            x = X[i]
+            for param_it in range(0, len(self.params)):
+                sum += x[param_it] * self.params[param_it]
+            sum += self.bias
+            output.append(sum)
+        return np.asarray(output)
+            
+        
+        
+            
+                
+                
+                
+            
+            
+            
+        
+        
+        

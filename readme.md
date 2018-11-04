@@ -13,3 +13,9 @@
 
 <p>On the first picture/gif there is a plot representing how the model changes in time(when the epochs are growing). The final epoch is equal to 100k.</p>
 <p>On the second one we can see a graph displaying the dependency of loss on the epoch(in range 0-1000). After 1000 epoch the change is really very small.</p>
+
+
+<h1>2. Multiple Linear Regression</h1>
+
+<p>More general version of the previous class. This time regression object takes a matrix of data as input. We can use regression for more compound problems</p>
+<p>Note: After about ~5000 epochs the model in most cases is almost as good as the Sklearn's LineaRegression</p>
