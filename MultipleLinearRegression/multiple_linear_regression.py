@@ -99,16 +99,3 @@ class LinearRegression:
             sum += self.bias
             output.append(sum)
         return np.asarray(output)
-            
-        
-        
-            
-                
-                
-                
-            
-            
-            
-        
-        
-        

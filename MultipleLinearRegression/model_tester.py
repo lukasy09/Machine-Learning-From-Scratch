@@ -7,8 +7,8 @@ from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
 import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
-
-
+import numpy as np
+import matplotlib.animation as animation
 
 scaler = StandardScaler()
 
@@ -30,9 +30,15 @@ y_mypreds = regressor_mine.predict(X_test)
 
 regressor_sklearn = LinearRegression()
 regressor_sklearn.fit(X_train, Y_train)
-y_skpreds = regressor_sklearn.predict(X_test)
+y_skpreds = regressor_sklearn.predict(X_test)]
 
 
-fig = plt.figure(figsize = (16, 10))
-ax = plt.axes(projection='3d')
-ax.scatter3D(X_train[:,0], X_train[:, 1], Y_train, cmap='binary');
+#LOSS
+
+losses = regressor_mine.loss_values
+epochs = np.asarray([epoch for epoch in range(0, 10000)])
+
+plt.plot(epochs, losees)
+plt.xlabel("epoch")
+plt.ylabel("loss")
+
