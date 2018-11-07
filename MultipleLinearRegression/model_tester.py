@@ -38,7 +38,8 @@ y_skpreds = regressor_sklearn.predict(X_test)]
 losses = regressor_mine.loss_values
 epochs = np.asarray([epoch for epoch in range(0, 10000)])
 
-plt.plot(epochs, losees)
+plt.plot(epochs, losses)
 plt.xlabel("epoch")
 plt.ylabel("loss")
+plt.savefig("multi-loss.png")
 
