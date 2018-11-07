@@ -1,7 +1,7 @@
 <h1>0.Introduction</h1>
 Below there is a list of projects I've prepared for this repository.
 <ul>
-	<li><a href = "https://github.com/lukasy09/Machine-Learning-From-Scratch/tree/master/SimpleLinearRegression>Simple Linear Regression</a></li>
+	<li><a href = "https://github.com/lukasy09/Machine-Learning-From-Scratch/tree/master/SimpleLinearRegression">Simple Linear Regression</a></li>
 	<li><a href = "https://github.com/lukasy09/Machine-Learning-From-Scratch/tree/master/MultipleLinearRegression">Multiple Linear Regression</a></li>
 </ul>
 
