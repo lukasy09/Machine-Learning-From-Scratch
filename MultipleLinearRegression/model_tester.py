@@ -30,7 +30,7 @@ y_mypreds = regressor_mine.predict(X_test)
 
 regressor_sklearn = LinearRegression()
 regressor_sklearn.fit(X_train, Y_train)
-y_skpreds = regressor_sklearn.predict(X_test)]
+y_skpreds = regressor_sklearn.predict(X_test)
 
 
 #LOSS

@@ -16,12 +16,16 @@ class LinearRegression:
         self.params = []
         self.bias = 0
         self.loss_values = []
+        
+        
     """Scaling input data"""    
     @staticmethod
     def scale_input_data(X):
         scaler = StandardScaler()
         return scaler.fit_transform(X)
     
+    
+    """Calculating error function"""
     def loss(self, X, Y, params, bias):
         error = 0
         n = self.n_points
