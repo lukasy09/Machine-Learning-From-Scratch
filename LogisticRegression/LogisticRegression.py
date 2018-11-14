@@ -1,6 +1,8 @@
 import numpy as np
 from sklearn.preprocessing import StandardScaler, LabelEncoder, OneHotEncoder
 import pandas as pd
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import confusion_matrix 
 
 class LogisticRegression:
 
@@ -17,43 +19,46 @@ class LogisticRegression:
         self.params = []
         self.bias = 0
         self.loss_values = []
+        
+    """Enables to count the sigmoid of X [-1, 1] <- range of the func"""    
+    def sigmoid(self,x):
+        return 1 / (1+np.exp(-x))
     
+                
+    """The pure logic behinds the classifier/model"""
     def step_gradient(self, X, Y, params, bias):
         n = self.n_points
         param_gradient = [0] * len(params)
         new_params = [0] * len(params)
         bias_gradient = 0
-        new_bias = 0
-        """Loop over whole X array (every row)"""
+
         for i in range(0, n):
             x = X[i]
             y = Y[i]
-            for param_index in range(0 , len(params)):
-                main_param = params[param_index]
-                sum = 0
-                for param_it in range(0, len(params)):
-                    sum += params[param_it] * x[param_it]
-                sum += bias
-                if y == 1:
-                    param_gradient[param_index] += -1/sum * main_param * 1/n
-                if y == 0:
-                    param_gradient[param_index] += (1/1-sum) * main_param * 1/n
-            b_sum = 0
             for param_it in range(0, len(params)):
-                b_sum  += params[param_it] * x[param_it]
-            if y == 1:
-                bias_gradient += (-1/b_sum) * 1/n
-            if y == 0:
-                bias_gradient += (1/1-b_sum) * 1/n
-        for it in range(0, len(params)):
-            ew_params[it] = params[it] - self.learning_rate * param_gradient[it]
-        
-        new_bias = bias - self.learning_rate * bias_gradient  
-        
+              main_x = x[param_it]  
+              pred = self.predictor(x, params, bias)
+              param_gradient[param_it] += (y-pred) * pred * (1-pred) * main_x
+            bias_gradient += (y-pred) * pred *(1-pred) * 1.0 #assumption that the 0 input is always equal to 1
+        for param_it in range(0, len(params)):
+            new_params[param_it] = params[param_it] + self.learning_rate * param_gradient[param_it]
+        new_bias = bias + self.learning_rate * bias_gradient
         return [new_params, new_bias]
+        
                 
+    """Run above function `epochs` times"""
+    def run_gradient_descent(self,X, Y):
+        params = [0] * self.n_features
+        bias = 0
+        for epoch in range(0, self.epochs):
+            params, bias = self.step_gradient(X, Y, params, bias)
+            #self.loss(X, Y, params,bias)
+        self.params = params
+        self.bias = bias
+        return [self.params, self.bias]
     
-    def fit(self, X, Y, epochs = 1000, learning_rate = 0.0001):
+    """User interface"""
+    def fit(self, X, Y, epochs = 100, learning_rate = 0.0001):
         self.epochs = epochs
         try:
             if len(X) != len(Y):
@@ -65,13 +70,38 @@ class LogisticRegression:
             self.n_points = self.size[0]
             self.n_features = self.size[1]
             self.params = [0] * self.n_features
+            self.run_gradient_descent(self.X, self.Y)
         except ValueError as e:
             print("Dimension are not matching! {}".format(e))
+    
+        finally:
+            print([self.params, self.bias])
+            
+    """"Method for user, predicting from an array"""        
+    def predict(self,X, params = None, bias = None):
         
-scaler = StandardScaler()
-classifier = LogisticRegression()
-df = pd.read_csv("./data/Social_Network_Ads.csv")
-X = df.iloc[:, 1:4].values
-X[:, 0] = LabelEncoder().fit_transform(X[:, 0])
-X = scaler.fit_transform(X)
-Y = df['Purchased'].values
+        if params is None or bias is None:
+            params = self.params
+            bias = self.bias
+        output = []
+        
+        for i in range(0, len(X)):
+            x = X[i]
+            sum = 0
+            for param_it in range(0, self.n_features):
+                sum += x[param_it] * params[param_it]
+            sum += bias
+            normalised_sum = self.sigmoid(sum)
+            if normalised_sum > 0.5:
+                output.append(1)
+            else:
+                output.append(0)
+        return np.asarray(output)
+    
+    """Predicts of a single row"""
+    def predictor(self, x, params, bias):
+        output = 0
+        for param_it in range(0, len(params)):
+            output += x[param_it] * params[param_it]
+        output += bias
+        return self.sigmoid(output)
