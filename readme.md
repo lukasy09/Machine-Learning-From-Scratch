@@ -39,8 +39,8 @@ Below there is a list of projects I've prepared for this repository.
 <p>In this particular example the model tries to make a difference between people who purchased some goods or didn't.</p>
 <p>As independent variables we have got: Man's age, estimated salary and sex.</p>
 <p>The Dataset comes from the Udemy ML course and that's just an example of the working model</p>
-<p>Below there are 2 confusion matrixes, the first one(on the left) represents my model for the particular test data, the second one(as we expect the right one...)
-belongs to sklarn model for the same test data.
+<p>Below there are 2 confusion matrixes, the first one  represents my model for the particular test data, the second one 
+belongs to sklearn model for the same test data.
 </p>
 <p align = "left">
 <img src = "./assets/LogisticRegression/confusion_matrix.png" ></img>
