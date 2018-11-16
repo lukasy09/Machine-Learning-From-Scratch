@@ -46,6 +46,7 @@ def print_confusion_matrix(confusion_matrix, class_names, figsize = (16,10), fon
     
     plt.ylabel('True label')
     plt.xlabel('Predicted label')
+    plt.title('Sklearn model')
     plt.savefig('confusion_matrix')
     return fig
 
