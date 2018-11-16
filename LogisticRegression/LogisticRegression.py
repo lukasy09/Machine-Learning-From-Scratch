@@ -1,9 +1,4 @@
 import numpy as np
-from sklearn.preprocessing import StandardScaler, LabelEncoder, OneHotEncoder
-import pandas as pd
-from sklearn.model_selection import train_test_split
-from sklearn.metrics import confusion_matrix 
-
 class LogisticRegression:
 
 
@@ -44,7 +39,7 @@ class LogisticRegression:
             new_params[param_it] = params[param_it] + self.learning_rate * param_gradient[param_it]
         new_bias = bias + self.learning_rate * bias_gradient
         return [new_params, new_bias]
-        
+
                 
     """Run above function `epochs` times"""
     def run_gradient_descent(self,X, Y):
@@ -74,8 +69,6 @@ class LogisticRegression:
         except ValueError as e:
             print("Dimension are not matching! {}".format(e))
     
-        finally:
-            print([self.params, self.bias])
             
     """"Method for user, predicting from an array"""        
     def predict(self,X, params = None, bias = None):
