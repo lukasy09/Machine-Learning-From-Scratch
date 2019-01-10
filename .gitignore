@@ -1,3 +1,4 @@
 /SimpleLinearRegression/generator_pictures
 venv*
+.idea*
 __pycache__
