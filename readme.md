@@ -5,10 +5,11 @@ Below there is a list of projects I've prepared for this repository.
 	<li><a href = "https://github.com/lukasy09/Machine-Learning-From-Scratch/tree/master/MultipleLinearRegression">Multiple Linear Regression</a></li>
 </ul>
 
+<h1>1.Supervised learning algorithms</h1>
 
 
 
-<h1 id ="SLR">1.Simple Linear Regression</h1>
+<h2 id ="SLR">1.1 Simple Linear Regression</h2>
 
 <p>As a first subproject I've implemented SimpleLinearRegression class. This model enables to fit the input data
  (that is 1-Dimensional vector/tensor) to a continous set of labels.</p>
@@ -25,7 +26,7 @@ Below there is a list of projects I've prepared for this repository.
 <p>On the second one we can see a graph displaying the dependency of loss on the epoch(in range 0-1000). After 10000th epoch the change is really very small and is comparable with sklearn model.</p>
 
 
-<h1 id ="MLR">2. Multiple Linear Regression</h1>
+<h2 id ="MLR">1.2 Multiple Linear Regression</h2>
 
 <p>More general version of the previous class. This time regression object takes a matrix of data as input. We can use regression for more compound problems</p>
 <p>Note: After about ~5000 epochs the model in most cases is almost as good as the Sklearn's LineaRegression</p>
@@ -33,20 +34,14 @@ Below there is a list of projects I've prepared for this repository.
 <img src = "./assets/MLR/multi-loss.png" ></img>
 </p>
 
-<h1 id ="LR">3.Logistic Regression</h1>
+<h2 id ="LR">1.3 Logistic Regression</h2>
 
 <p>In this project I've implemented (binary) Logistic Regression learning model. </p>
-<p>In this particular example the model tries to make a difference between people who purchased some goods or didn't.</p>
-<p>As independent variables we have got: Man's age, estimated salary and sex.</p>
-<p>The Dataset comes from the Udemy ML course and that's just an example of the working model</p>
-<p>Below there are 2 confusion matrixes, the first one  represents my model for the particular test data, the second one 
-belongs to sklearn model for the same test data.
+<p>The data below have been generated and split into 2 classes. The model's task is to make a difference among the points and classify them.</p>
+
+<p >
+<img src = "./assets/LogisticRegression/model_log_10kiter.png" ></img>
 </p>
-<p align = "left">
-<img src = "./assets/LogisticRegression/confusion_matrix.png" ></img>
-</p>
-<p align = "right">
-<img src = "./assets/LogisticRegression/confusion_matrix_sklearn.png" ></img>
-</p>
+
 
 
