@@ -16,7 +16,6 @@ class PCA:
         (n_points, feature_number) = data.shape
         for feature_index in range(0, feature_number):
             mean = PCA.calculate_mi(data[:, feature_index])
-            print(mean)
             for i in range(0, n_points):
                 data[i, feature_index] -= mean
         return data
@@ -33,9 +32,9 @@ class PCA:
         self.data = data
         self.reduced_components = k
 
-        covariance_matrix  = self.compute_covariance_matrix()
-        u_matrix = self.compute_usv(sigma= covariance_matrix)
-        z_vector = self.reduce(u_matrix = u_matrix)
+        covariance_matrix = self.compute_covariance_matrix()
+        u_matrix = self.compute_usv(sigma=covariance_matrix)
+        z_vector = self.reduce(u_matrix=u_matrix)
 
         return z_vector
 
@@ -46,7 +45,7 @@ class PCA:
         for data_point in data:
             data_point = data_point.reshape(feature_number, 1)
             data_point_transposed = data_point.reshape(1, feature_number)
-            product =  np.dot(data_point, data_point_transposed)
+            product = np.dot(data_point, data_point_transposed)
             sigma = np.add(sigma, product)
         return sigma / n_points
 
@@ -69,10 +68,11 @@ class PCA:
         return z_vector
 
 np.random.seed(0)
-X, y = make_moons(200, noise=0.20)
-plt.scatter(X[:,0], X[:,1], s=40, c=y, cmap=plt.cm.Spectral)
-plt.show()
+X = np.array([[[1,2,3],[4,5,3]], [[3,4,5], [7,8,9]]])
+#plt.show()
 
+print(X.shape)
 pca = PCA()
-z = pca.fit_transform(data=X, k=1)
-print(z)
+z = pca.fit_transform(data=X, k=2)
+
+
