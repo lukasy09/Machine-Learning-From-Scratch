@@ -45,7 +45,7 @@ Below there is a list of projects I've prepared for this repository.
 
 <h1>2.Unsupervised Learning</h1>
 
-<h2>PCA - Principal Component Analysis</h2>
+<h2>2.1 PCA - Principal Component Analysis</h2>
 <p>An unsupervised learning algorithm reducing the dimensionality of data.</p>
 
 <h3>1.Blue - Input data sized (1000,3)</h3>
