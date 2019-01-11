@@ -39,9 +39,18 @@ Below there is a list of projects I've prepared for this repository.
 <p>In this project I've implemented (binary) Logistic Regression learning model. </p>
 <p>The data below have been generated and split into 2 classes. The model's task is to make a difference among the points and classify them.</p>
 
-<p >
+<p align = "center">
 <img src = "./assets/LogisticRegression/model_log_10kiter.png" ></img>
 </p>
 
+<h1>2.Unsupervised Learning</h1>
 
+<h2>PCA - Principal Component Analysis</h2>
+<p>An unsupervised learning algorithm reducing the dimensionality of data.</p>
 
+<h3>1.Blue - Input data sized (1000,3)</h3>
+<h3>2.Orange - Output data sized (1000,2)</h3>
+
+<p align = "center">
+<img src = "./assets/PCA/PCA3d_2d.png" ></img>
+</p>

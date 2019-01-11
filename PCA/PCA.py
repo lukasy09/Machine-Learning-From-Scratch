@@ -62,4 +62,5 @@ class PCA:
         for i in range(0, n_points):
             product = np.dot(u_reduced_transposed, data[i].reshape(n_features, 1))
             z_vector[i] = product.reshape(2, )
+
         return z_vector
